@@ -8,12 +8,14 @@ function HeaderBar(){
 
     const [buttons, setButtons] = useState([["About", "/"], ["Blog", "/"],
          ["Contact", "/"], ["Pages","/"]]);
-    const [open, setOpen] = useState(false);
+    const [openShopBar, setOpenShopBar] = useState(false);
+    const [openLine, setOpenLine] = useState(false);
 
     const history = useHistory();
 
     return(
-        <div className="flex lg:flex-row flex-col lg:h-20 h-100 sm:h-50 items-center">
+        <div className={`flex lg:flex-row flex-col lg:h-20 ${openLine ? "sm:h-50  h-100" : "sm:h-25 h-25"}
+            ${openShopBar && openLine ? "sm:h-50  h-155" : "sm:h-25 h-25"} items-center`}>
             <div className="flex flex-row justify-between items-center w-screen lg:px-10 px-10 mt-7 lg:mt-0">
                 <div className="flex flex-row justify-between lg:space-x-25 space-x-5">
                     <h1 className="text-2xl lg:text-3xl font-bold">Bandage</h1>
@@ -25,12 +27,12 @@ function HeaderBar(){
                     
                     <div className="relative hidden lg:flex">
                         <button className="flex flex-row"
-                            onClick={() => setOpen(!open)}>
+                            onClick={() => setOpenShopBar(!openShopBar)}>
                         Shop {<ChevronDown 
-                            className={`transition ${open ? "rotate-180" : ""}`}/>}
+                            className={`transition ${openShopBar ? "rotate-180" : ""}`}/>}
                         </button>
 
-                        {open && (
+                        {openShopBar && (
                             <ShopNavBar />
                         )}
                     </div>
@@ -74,34 +76,38 @@ function HeaderBar(){
                         </button>
 
                         <button className="flex lg:hidden"
-                            onClick={() => setOpen(!open)}>
+                            onClick={() => setOpenLine(!openLine)}>
                             <TextAlignEnd />
                         </button>
 
-                        {open && (
-                            <div className="flex lg:hidden">
-                                <ShopNavBar />
-                            </div>
-                        )}
+                        
                     </div>
                 </div>
             </div>
 
-            <nav className="flex sm:flex-row flex-col items-center lg:hidden px-10 mt-7 
-                gap-5 sm:gap-10 text-2xl text-gray-500 font-semibold py-10">
-                    <button onClick={() => history.push("/")}>
+            {openLine && (<div className="flex sm:flex-row flex-col items-center lg:hidden px-10 mt-7 
+                 text-2xl text-gray-500 font-semibold py-10">
+                    <button onClick={() => history.push("/")} className="m-3 sm:mx-7">
                         Home
                     </button>
-                    <button onClick={() => history.push("/")}>
+                    <button onClick={() => setOpenShopBar(!openShopBar)} 
+                        className={`m-3 sm:mx-7 ${openShopBar ? "sm:mb-0 mb-65" : "mb-3"}`}>
                         Product
                     </button>
-                    <button onClick={() => history.push("/")}>
+                    
+                    {openShopBar && (
+                            <div className="flex lg:hidden">
+                                <ShopNavBar />
+                            </div>
+                    )}
+
+                    <button onClick={() => history.push("/")} className="m-3 sm:mx-7">
                         Pricing
                     </button>
-                    <button onClick={() => history.push("/")}>
+                    <button onClick={() => history.push("/")} className="m-3 sm:mx-7">
                         Contact
                     </button>
-                </nav>
+                </div>)}
         </div>
     )
 }
