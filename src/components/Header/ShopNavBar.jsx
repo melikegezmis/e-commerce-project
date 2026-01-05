@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function ShopNavBar() {
   return (
-    <div className="absolute lg:left-0 sm:left-2/7 left-0 lg:top-full md:top-3/12 top-55 mt-4 bg-white z-10 shadow-md">
+    <div className="absolute lg:left-0 sm:left-2/7 left-0 lg:top-full sm:top-3/12 top-55 mt-4 bg-white z-10 shadow-md">
       <div
         className="
           flex flex-col flex-wrap gap-6
@@ -12,7 +12,7 @@ function ShopNavBar() {
         "
       >
         <div>
-          <h3 className="font-semibold mb-4 text-sm">Women</h3>
+          <h3 className="font-semibold mb-4 text-sm text-black">Women</h3>
 
           <Link to="/shop" className="text-sm block py-2 hover:text-blue-500">
             Clothes
@@ -32,7 +32,7 @@ function ShopNavBar() {
         </div>
         
         <div>
-          <h3 className="font-semibold mb-4 text-sm">Men</h3>
+          <h3 className="font-semibold mb-4 text-sm text-black">Men</h3>
 
           <Link to="/shop" className="text-sm block py-2 hover:text-blue-500">
             Clothes
