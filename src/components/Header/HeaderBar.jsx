@@ -91,7 +91,7 @@ function HeaderBar(){
                         Home
                     </button>
                     <button onClick={() => setOpenShopBar(!openShopBar)} 
-                        className={`m-3 sm:mx-7 ${openShopBar ? "sm:mb-0 mb-65" : "mb-3"}`}>
+                        className={`m-3 sm:mx-7 ${openShopBar ? "sm:mb-3 mb-65" : "mb-3"}`}>
                         Product
                     </button>
                     
